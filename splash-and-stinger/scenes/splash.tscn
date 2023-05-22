@@ -1,0 +1,129 @@
+[gd_scene load_steps=6 format=3 uid="uid://ye1qi3u3ihnw"]
+
+[ext_resource type="Script" path="res://scripts/splash.gd" id="1_760bo"]
+[ext_resource type="LabelSettings" uid="uid://dgosfmp3sng6o" path="res://fonts/label_settings_black.tres" id="2_mw6jx"]
+
+[sub_resource type="Animation" id="Animation_tbweo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Deco:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_b81m0"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Deco:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:modulate")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nfxyk"]
+_data = {
+"RESET": SubResource("Animation_tbweo"),
+"fade_in": SubResource("Animation_b81m0")
+}
+
+[node name="Splash" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_760bo")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="Label" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Rikai Dev"
+label_settings = ExtResource("2_mw6jx")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Deco" type="Node2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(-144, 0)
+scale = Vector2(1.25, 1)
+metadata/_edit_group_ = true
+
+[node name="Line" type="Polygon2D" parent="Deco"]
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(536, 336, 616, 336, 616, 338, 536, 338)
+
+[node name="SmallLine" type="Polygon2D" parent="Deco"]
+position = Vector2(115, 4)
+scale = Vector2(0.799999, 1)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(536, 336, 576.486, 336, 616, 336, 616, 338, 536, 338)
+
+[node name="Line2" type="Polygon2D" parent="Deco"]
+position = Vector2(0, -22)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(536, 336, 616, 336, 616, 338, 536, 338)
+
+[node name="SmallLine2" type="Polygon2D" parent="Deco"]
+position = Vector2(115, -26)
+scale = Vector2(0.799999, 1)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(536, 336, 576.486, 336, 616, 336, 616, 338, 576.25, 338, 536, 338)
+
+[node name="FadeInPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_nfxyk")
+}
