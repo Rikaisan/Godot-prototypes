@@ -1,0 +1,6 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://c4x5let5ciiv8"]
+
+[ext_resource type="Shader" path="res://shaders/spider_vision.gdshader" id="1_b1bbh"]
+
+[resource]
+shader = ExtResource("1_b1bbh")

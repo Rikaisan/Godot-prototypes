@@ -1,0 +1,13 @@
+[gd_resource type="NoiseTexture2D" load_steps=2 format=3 uid="uid://w7d31o50d7x0"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_dyw5h"]
+noise_type = 2
+frequency = 0.046
+fractal_type = 0
+cellular_distance_function = 1
+domain_warp_enabled = true
+domain_warp_frequency = 0.013
+domain_warp_fractal_octaves = 1
+
+[resource]
+noise = SubResource("FastNoiseLite_dyw5h")

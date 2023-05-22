@@ -1,0 +1,13 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dcbc2m5dj30ao"]
+
+[ext_resource type="Shader" path="res://shaders/chromatic.gdshader" id="1_ltckj"]
+
+[resource]
+shader = ExtResource("1_ltckj")
+shader_parameter/red_offset_x = 1.0
+shader_parameter/red_offset_y = 1.0
+shader_parameter/green_offset_x = null
+shader_parameter/green_offset_y = null
+shader_parameter/blue_offset_x = -1.0
+shader_parameter/blue_offset_y = -1.0
+shader_parameter/force = 0.5

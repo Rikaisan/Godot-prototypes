@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://d0nbobjwkk3gt"]
+
+[ext_resource type="Shader" path="res://shaders/texture_distort.gdshader" id="1_n5mo3"]
+
+[resource]
+shader = ExtResource("1_n5mo3")
+shader_parameter/strenght = 0.02
+shader_parameter/animate = true

@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bhlwcphpfl3dg"]
+
+[ext_resource type="Shader" path="res://shaders/shock.gdshader" id="1_ebfva"]
+
+[resource]
+shader = ExtResource("1_ebfva")
+shader_parameter/center = Vector2(0.5, 0.5)
+shader_parameter/force = 0.199971
+shader_parameter/size = 0.00351087
+shader_parameter/feather = 0.04
+shader_parameter/width = 0.07

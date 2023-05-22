@@ -1,0 +1,7 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://d2p2ntj3u2skj"]
+
+[ext_resource type="Shader" path="res://shaders/grayscale.gdshader" id="1_e580t"]
+
+[resource]
+shader = ExtResource("1_e580t")
+shader_parameter/method = null

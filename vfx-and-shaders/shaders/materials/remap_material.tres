@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://hmii5op2akpx"]
+
+[ext_resource type="Shader" path="res://shaders/tone_remap.gdshader" id="1_qdi0q"]
+[ext_resource type="Texture2D" uid="uid://dxi1lxamk0hk5" path="res://textures/remap_gradient.tres" id="2_pimcc"]
+
+[resource]
+shader = ExtResource("1_qdi0q")
+shader_parameter/remap_colors = false
+shader_parameter/colors = ExtResource("2_pimcc")

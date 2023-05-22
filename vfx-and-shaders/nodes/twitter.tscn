@@ -1,0 +1,182 @@
+[gd_scene load_steps=18 format=3 uid="uid://7nm6jqktkltx"]
+
+[ext_resource type="Texture2D" uid="uid://osxnardod1ns" path="res://textures/noise_combined.png" id="1_yb5i4"]
+[ext_resource type="Texture2D" uid="uid://e23pim44sq3i" path="res://textures/laserpointer.png" id="2_opupm"]
+[ext_resource type="Texture2D" uid="uid://cr7r2iqck41f6" path="res://textures/spotlight_3.png" id="3_l5cyv"]
+[ext_resource type="Texture2D" uid="uid://sf7vkbymt0hu" path="res://textures/icon.svg" id="4_6pm6r"]
+
+[sub_resource type="Shader" id="Shader_ujmyf"]
+code = "shader_type canvas_item;
+
+uniform sampler2D noise_img : repeat_enable, filter_nearest;
+uniform float speed = 1.0;
+uniform vec4 smoke_color : source_color;
+uniform sampler2D gradient_tex : repeat_enable, filter_nearest;
+
+void fragment() {
+	vec2 uv = vec2(UV.x - TIME * speed, UV.y);
+	vec2 uv2 = vec2(UV.x, UV.y - TIME * speed);
+	vec2 uv3 = vec2(UV.x + TIME * speed, UV.y - TIME * speed);
+	
+	float noise_r = texture(noise_img, uv).r;
+	float noise_g = texture(noise_img, uv2).g;
+	float noise_b = texture(noise_img, uv3).b;
+	vec3 new_color = vec3(noise_r, noise_g, noise_b);
+	
+	float new_alpha = noise_r * noise_g * noise_b;
+	
+	COLOR.rgb = smoke_color.rgb;
+	COLOR.a = clamp(new_alpha * 15.0 * texture(TEXTURE, UV).a, 0.0, 1.0);
+	COLOR.a = COLOR.a * texture(gradient_tex, -UV).r;
+}
+"
+
+[sub_resource type="Gradient" id="Gradient_lnecq"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_vci6h"]
+gradient = SubResource("Gradient_lnecq")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xrm3v"]
+shader = SubResource("Shader_ujmyf")
+shader_parameter/speed = 0.1
+shader_parameter/smoke_color = Color(1, 0.2, 0.745098, 1)
+shader_parameter/noise_img = ExtResource("1_yb5i4")
+shader_parameter/gradient_tex = SubResource("GradientTexture1D_vci6h")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mtc30"]
+shader = SubResource("Shader_ujmyf")
+shader_parameter/speed = 0.1
+shader_parameter/smoke_color = Color(0.760784, 0.2, 1, 1)
+shader_parameter/noise_img = ExtResource("1_yb5i4")
+shader_parameter/gradient_tex = SubResource("GradientTexture1D_vci6h")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xq0n4"]
+shader = SubResource("Shader_ujmyf")
+shader_parameter/speed = 0.1
+shader_parameter/smoke_color = Color(0.372549, 0.2, 1, 1)
+shader_parameter/noise_img = ExtResource("1_yb5i4")
+shader_parameter/gradient_tex = SubResource("GradientTexture1D_vci6h")
+
+[sub_resource type="Shader" id="Shader_5njek"]
+code = "shader_type canvas_item;
+
+uniform sampler2D noise_img : repeat_enable, filter_nearest;
+uniform float speed = 1.0;
+uniform vec4 smoke_color : source_color;
+
+void fragment() {
+	vec2 uv = vec2(UV.x + TIME * speed, UV.y);
+	vec2 uv2 = vec2(UV.x, UV.y + TIME * speed);
+	vec2 uv3 = vec2(UV.x + TIME * speed, UV.y + TIME * speed);
+	
+	float noise_r = texture(noise_img, uv).r;
+	float noise_g = texture(noise_img, uv2).g;
+	float noise_b = texture(noise_img, uv3).b;
+	vec3 new_color = vec3(noise_r, noise_g, noise_b);
+	
+	float new_alpha = noise_r * noise_g * noise_b;
+	
+	COLOR.rgb = smoke_color.rgb;
+	COLOR.a = clamp(new_alpha * 15.0 * texture(TEXTURE, UV).a, 0.0, 1.0);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vqqlx"]
+shader = SubResource("Shader_5njek")
+shader_parameter/speed = 0.1
+shader_parameter/smoke_color = Color(0.694118, 1, 0.2, 1)
+shader_parameter/noise_img = ExtResource("1_yb5i4")
+
+[sub_resource type="Shader" id="Shader_w75v7"]
+code = "shader_type canvas_item;
+
+uniform sampler2D noise_img : repeat_enable, filter_nearest;
+uniform sampler2D gradient_tex : repeat_enable, filter_nearest;
+uniform float speed = 1.0;
+uniform vec4 smoke_color : source_color;
+
+void fragment() {
+	vec2 uv = vec2(UV.x + TIME * speed, UV.y);
+	vec2 uv2 = vec2(UV.x, UV.y + TIME * speed);
+	vec2 uv3 = vec2(UV.x + TIME * speed, UV.y + TIME * speed);
+	
+	float gradient = texture(gradient_tex, vec2(UV.y, UV.x)).r;
+	float noise_r = texture(noise_img, uv).r;
+	float noise_g = texture(noise_img, uv2).g;
+	float noise_b = texture(noise_img, uv3).b;
+	vec3 new_color = vec3(noise_r, noise_g, noise_b);
+	
+	float new_alpha = noise_r * noise_g * noise_b;
+	
+	COLOR.rgb = smoke_color.rgb;
+	COLOR.a = clamp(new_alpha * gradient * 15.0, 0.0, 1.0);
+}
+"
+
+[sub_resource type="Gradient" id="Gradient_35xdm"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.325203, 0.837398, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.50753, 0.50753, 0.50753, 1, 0.8, 0.8, 0.8, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_tp8l7"]
+gradient = SubResource("Gradient_35xdm")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1vdmc"]
+shader = SubResource("Shader_w75v7")
+shader_parameter/speed = 0.1
+shader_parameter/smoke_color = Color(0, 1, 0.898039, 1)
+shader_parameter/noise_img = ExtResource("1_yb5i4")
+shader_parameter/gradient_tex = SubResource("GradientTexture1D_tp8l7")
+
+[sub_resource type="Environment" id="Environment_7gxsx"]
+background_mode = 3
+glow_enabled = true
+glow_strength = 0.67
+glow_bloom = 0.67
+glow_blend_mode = 1
+
+[node name="Twitter" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 512.0
+offset_bottom = 512.0
+color = Color(0.0431373, 0.0431373, 0.0431373, 1)
+
+[node name="Laser Fog" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_xrm3v")
+position = Vector2(108, 68)
+scale = Vector2(0.5, 4)
+texture = ExtResource("2_opupm")
+
+[node name="Laser Fog2" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_mtc30")
+position = Vector2(108, 124)
+scale = Vector2(0.5, 4)
+texture = ExtResource("2_opupm")
+
+[node name="Laser Fog3" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_xq0n4")
+position = Vector2(108, 180)
+scale = Vector2(0.5, 4)
+texture = ExtResource("2_opupm")
+
+[node name="Point Fog2" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_vqqlx")
+position = Vector2(382, 130)
+texture = ExtResource("3_l5cyv")
+
+[node name="Directional Fog" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_1vdmc")
+position = Vector2(256, 334)
+scale = Vector2(3.99219, 3.99219)
+texture = ExtResource("4_6pm6r")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_7gxsx")
