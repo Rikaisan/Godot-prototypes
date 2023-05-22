@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://8kt37k0wcxku"]
+
+[ext_resource type="Script" path="res://Scenes/Objects/paddle.gd" id="1_31m7s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i5ncl"]
+size = Vector2(20, 120)
+
+[node name="Paddle" type="AnimatableBody2D"]
+sync_to_physics = false
+script = ExtResource("1_31m7s")
+speed = 350
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-10, -60, 10, -60, 10, 60, -10, 60)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_i5ncl")

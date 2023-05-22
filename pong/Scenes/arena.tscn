@@ -1,0 +1,122 @@
+[gd_scene load_steps=9 format=3 uid="uid://deavjvofpwvuf"]
+
+[ext_resource type="Script" path="res://Scenes/arena.gd" id="1_amgks"]
+[ext_resource type="PackedScene" uid="uid://8kt37k0wcxku" path="res://Scenes/Objects/paddle.tscn" id="3_o5bdp"]
+[ext_resource type="PackedScene" uid="uid://c0avw4d16qeqc" path="res://Scenes/Objects/ball.tscn" id="4_5oi3d"]
+
+[sub_resource type="SystemFont" id="SystemFont_vuegu"]
+font_names = PackedStringArray("Pixels")
+
+[sub_resource type="LabelSettings" id="LabelSettings_o75na"]
+font = SubResource("SystemFont_vuegu")
+font_size = 128
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_acvkj"]
+size = Vector2(1152, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_12fu8"]
+size = Vector2(16, 676)
+
+[sub_resource type="Environment" id="Environment_hys53"]
+background_mode = 3
+glow_enabled = true
+glow_bloom = 0.03
+glow_blend_mode = 0
+
+[node name="Arena" type="Node"]
+script = ExtResource("1_amgks")
+
+[node name="Background" type="ColorRect" parent="."]
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0.0431373, 0.0431373, 0.0431373, 1)
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+modulate = Color(1, 1, 1, 0.0980392)
+polygon = PackedVector2Array(568, 0, 584, 0, 584, 648, 568, 648)
+
+[node name="Paddle L" parent="." instance=ExtResource("3_o5bdp")]
+position = Vector2(56, 328)
+is_player = true
+
+[node name="Paddle R" parent="." instance=ExtResource("3_o5bdp")]
+position = Vector2(1096, 328)
+controls = ["p2_up", "p2_down"]
+
+[node name="Ball" parent="." instance=ExtResource("4_5oi3d")]
+position = Vector2(-32, -32)
+speed = 600
+
+[node name="Score L" type="Label" parent="."]
+anchors_preset = -1
+anchor_left = 0.465
+anchor_top = 0.161
+anchor_right = 0.465
+anchor_bottom = 0.161
+offset_left = -535.68
+offset_top = -96.328
+offset_right = 0.319946
+offset_bottom = 0.671989
+pivot_offset = Vector2(88, 49)
+text = "0"
+label_settings = SubResource("LabelSettings_o75na")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Score R" type="Label" parent="."]
+anchors_preset = -1
+anchor_left = 0.528
+anchor_top = 0.16
+anchor_right = 0.528
+anchor_bottom = 0.16
+offset_left = 15.744
+offset_top = -95.68
+offset_right = 551.744
+offset_bottom = 1.32
+pivot_offset = Vector2(0, 48)
+text = "0"
+label_settings = SubResource("LabelSettings_o75na")
+vertical_alignment = 1
+
+[node name="Walls" type="Node" parent="."]
+
+[node name="Static" type="StaticBody2D" parent="Walls"]
+position = Vector2(576, 328)
+metadata/_edit_group_ = true
+
+[node name="Top" type="CollisionShape2D" parent="Walls/Static"]
+position = Vector2(0, -336)
+shape = SubResource("RectangleShape2D_acvkj")
+
+[node name="Bottom" type="CollisionShape2D" parent="Walls/Static"]
+position = Vector2(0, 328)
+shape = SubResource("RectangleShape2D_acvkj")
+
+[node name="Score Zone L" type="Area2D" parent="Walls"]
+position = Vector2(-8, 320)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Score Zone L"]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_12fu8")
+debug_color = Color(0, 0.701961, 0.188235, 0.419608)
+
+[node name="Score Zone R" type="Area2D" parent="Walls"]
+position = Vector2(1160, 320)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Score Zone R"]
+position = Vector2(0, 6)
+shape = SubResource("RectangleShape2D_12fu8")
+debug_color = Color(0, 0.701961, 0.188235, 0.419608)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_hys53")
+
+[connection signal="start_game" from="." to="Ball" method="_on_arena_start_game"]
+[connection signal="body_entered" from="Walls/Score Zone L" to="." method="_on_score_zone_l_body_entered"]
+[connection signal="body_entered" from="Walls/Score Zone L" to="Paddle R" method="_on_score_zone_body_entered"]
+[connection signal="body_entered" from="Walls/Score Zone L" to="Ball" method="_on_score_zone_body_entered"]
+[connection signal="body_entered" from="Walls/Score Zone R" to="." method="_on_score_zone_r_body_entered"]
+[connection signal="body_entered" from="Walls/Score Zone R" to="Paddle R" method="_on_score_zone_body_entered"]
+[connection signal="body_entered" from="Walls/Score Zone R" to="Ball" method="_on_score_zone_body_entered"]
