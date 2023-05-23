@@ -1,0 +1,75 @@
+[gd_scene load_steps=12 format=3 uid="uid://dpgdujwmi8b1v"]
+
+[ext_resource type="Script" path="res://nodes/chest.gd" id="1_2jxcq"]
+[ext_resource type="Texture2D" uid="uid://bxaedl7dk1h51" path="res://sprites/mini_chest/mini_chest_open_1.png" id="2_ayh7g"]
+[ext_resource type="Texture2D" uid="uid://def18wplkpycp" path="res://sprites/mini_chest/mini_chest_open_2.png" id="3_hhad6"]
+[ext_resource type="Texture2D" uid="uid://cw5suvm6y0px7" path="res://sprites/mini_chest/mini_chest_open_3.png" id="4_8iyyj"]
+[ext_resource type="Texture2D" uid="uid://c0sotw8jq5xb1" path="res://sprites/mini_chest/mini_chest_3.png" id="4_bxq3k"]
+[ext_resource type="Texture2D" uid="uid://d2m10eokjaw2p" path="res://sprites/mini_chest/mini_chest_open_4.png" id="5_knsv1"]
+
+[sub_resource type="Animation" id="Animation_yf51d"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_bxq3k")]
+}
+
+[sub_resource type="Animation" id="Animation_25lbd"]
+resource_name = "idle"
+length = 0.416675
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0833333, 0.166667, 0.25, 0.333333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("4_bxq3k"), ExtResource("2_ayh7g"), ExtResource("3_hhad6"), ExtResource("4_8iyyj"), ExtResource("5_knsv1")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pqskd"]
+_data = {
+"RESET": SubResource("Animation_yf51d"),
+"open": SubResource("Animation_25lbd")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ospu"]
+size = Vector2(10, 10)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_76ebk"]
+radius = 22.0227
+
+[node name="Chest" type="StaticBody2D"]
+script = ExtResource("1_2jxcq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("4_bxq3k")
+region_rect = Rect2(80, 128, 16, 16)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
+libraries = {
+"": SubResource("AnimationLibrary_pqskd")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_4ospu")
+
+[node name="InteractionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+shape = SubResource("CircleShape2D_76ebk")
+
+[connection signal="body_entered" from="InteractionArea" to="." method="_on_interaction_area_body_entered"]

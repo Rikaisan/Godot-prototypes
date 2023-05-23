@@ -1,0 +1,121 @@
+[gd_scene load_steps=9 format=3 uid="uid://b7g1ar5yrbefm"]
+
+[ext_resource type="Script" path="res://nodes/coin.gd" id="1_1frui"]
+[ext_resource type="Texture2D" uid="uid://dhr24e1vnnqa5" path="res://sprites/Dungeon_Tileset.png" id="2_rel5r"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1lly0"]
+radius = 2.0
+
+[sub_resource type="Animation" id="Animation_pyhhw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Polygon2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_3e801"]
+resource_name = "idle"
+length = 2.0
+loop_mode = 1
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Polygon2D:scale")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.8, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_j3qrl"]
+_data = {
+"RESET": SubResource("Animation_pyhhw"),
+"idle": SubResource("Animation_3e801")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yi14q"]
+radius = 40.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_n363e"]
+radius = 5.0
+
+[node name="Potion" type="RigidBody2D"]
+gravity_scale = 0.0
+lock_rotation = true
+linear_damp = 10.0
+script = ExtResource("1_1frui")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_1lly0")
+disabled = true
+debug_color = Color(0.701961, 0, 0.0156863, 0.419608)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_rel5r")
+region_enabled = true
+region_rect = Rect2(112, 128, 16, 16)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
+autoplay = "idle"
+libraries = {
+"": SubResource("AnimationLibrary_j3qrl")
+}
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(0, 0, 0, 0.27451)
+polygon = PackedVector2Array(-3, 6, 3, 6, 4, 7, 3, 8, -3, 8, -4, 7)
+
+[node name="FollowArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FollowArea"]
+shape = SubResource("CircleShape2D_yi14q")
+
+[node name="CollectionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollectionArea"]
+shape = SubResource("CircleShape2D_n363e")
+debug_color = Color(0.701961, 0.623529, 0, 0.419608)
+
+[node name="SpeedTimer" type="Timer" parent="."]
+wait_time = 0.5
+
+[connection signal="body_entered" from="FollowArea" to="." method="_on_follow_area_body_entered"]
+[connection signal="body_exited" from="FollowArea" to="." method="_on_follow_area_body_exited"]
+[connection signal="body_entered" from="CollectionArea" to="." method="_on_collection_area_body_entered"]
+[connection signal="timeout" from="SpeedTimer" to="." method="_on_speed_timer_timeout"]
