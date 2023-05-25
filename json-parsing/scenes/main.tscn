@@ -1,0 +1,246 @@
+[gd_scene load_steps=6 format=3 uid="uid://bgpumdop4evd8"]
+
+[ext_resource type="Script" path="res://scenes/animated_bg.gd" id="1_h56pp"]
+[ext_resource type="FontFile" uid="uid://jiiyt15wpi1m" path="res://Born2bSportyV2.ttf" id="1_vygvp"]
+[ext_resource type="Script" path="res://scenes/loot_generator.gd" id="1_ypu3j"]
+[ext_resource type="Theme" uid="uid://1bjhe0jv654" path="res://resources/main_theme.tres" id="3_r0qv2"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_hlu3v"]
+font = ExtResource("1_vygvp")
+font_size = 64
+shadow_size = 5
+shadow_color = Color(0, 0, 0, 0.254902)
+shadow_offset = Vector2(3, 3)
+
+[node name="UI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ypu3j")
+table_folder = "res://loot-tables/"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.247059, 0.133333, 0.513726, 1)
+script = ExtResource("1_h56pp")
+speed_multiplier = 0.1
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="Out" type="Polygon2D" parent="ColorRect"]
+position = Vector2(168, 504)
+rotation = -0.296271
+color = Color(0.709804, 0.439216, 1, 0.494118)
+antialiased = true
+polygon = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+metadata/_edit_group_ = true
+
+[node name="Fill" type="Polygon2D" parent="ColorRect/Out"]
+color = Color(0.247059, 0.133333, 0.513726, 1)
+polygon = PackedVector2Array(-48, -48, 48, -48, 48, 48, -48, 48)
+
+[node name="Out2" type="Polygon2D" parent="ColorRect"]
+position = Vector2(352, 304)
+rotation = -0.607514
+scale = Vector2(1.58554, 1.58554)
+color = Color(0.709804, 0.439216, 1, 0.494118)
+antialiased = true
+polygon = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+metadata/_edit_group_ = true
+
+[node name="Fill" type="Polygon2D" parent="ColorRect/Out2"]
+color = Color(0.247059, 0.133333, 0.513726, 1)
+polygon = PackedVector2Array(-48, -48, 48, -48, 48, 48, -48, 48)
+
+[node name="Out3" type="Polygon2D" parent="ColorRect"]
+position = Vector2(560, 440)
+rotation = 0.361233
+scale = Vector2(0.536975, 0.536975)
+color = Color(0.709804, 0.439216, 1, 0.494118)
+antialiased = true
+polygon = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+metadata/_edit_group_ = true
+
+[node name="Fill" type="Polygon2D" parent="ColorRect/Out3"]
+color = Color(0.247059, 0.133333, 0.513726, 1)
+polygon = PackedVector2Array(-48, -48, 48, -48, 48, 48, -48, 48)
+
+[node name="Out4" type="Polygon2D" parent="ColorRect"]
+position = Vector2(656, 640)
+rotation = 0.636708
+color = Color(0.709804, 0.439216, 1, 0.494118)
+antialiased = true
+polygon = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+metadata/_edit_group_ = true
+
+[node name="Fill" type="Polygon2D" parent="ColorRect/Out4"]
+color = Color(0.247059, 0.133333, 0.513726, 1)
+polygon = PackedVector2Array(-48, -48, 48, -48, 48, 48, -48, 48)
+
+[node name="Out5" type="Polygon2D" parent="ColorRect"]
+position = Vector2(1144, 104)
+rotation = 0.325465
+scale = Vector2(1.58554, 1.58554)
+color = Color(0.709804, 0.439216, 1, 0.494118)
+antialiased = true
+polygon = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+metadata/_edit_group_ = true
+
+[node name="Fill" type="Polygon2D" parent="ColorRect/Out5"]
+color = Color(0.247059, 0.133333, 0.513726, 1)
+polygon = PackedVector2Array(-48, -48, 48, -48, 48, 48, -48, 48)
+
+[node name="Out6" type="Polygon2D" parent="ColorRect"]
+position = Vector2(1064, 560)
+rotation = 1.29421
+scale = Vector2(0.536975, 0.536975)
+color = Color(0.709804, 0.439216, 1, 0.494118)
+antialiased = true
+polygon = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+metadata/_edit_group_ = true
+
+[node name="Fill" type="Polygon2D" parent="ColorRect/Out6"]
+color = Color(0.247059, 0.133333, 0.513726, 1)
+polygon = PackedVector2Array(-48, -48, 48, -48, 48, 48, -48, 48)
+
+[node name="Out7" type="Polygon2D" parent="ColorRect"]
+position = Vector2(880, 392)
+rotation = 0.175326
+scale = Vector2(1.29434, 1.29434)
+color = Color(0.709804, 0.439216, 1, 0.494118)
+antialiased = true
+polygon = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+metadata/_edit_group_ = true
+
+[node name="Fill" type="Polygon2D" parent="ColorRect/Out7"]
+color = Color(0.247059, 0.133333, 0.513726, 1)
+polygon = PackedVector2Array(-48, -48, 48, -48, 48, 48, -48, 48)
+
+[node name="Out8" type="Polygon2D" parent="ColorRect"]
+position = Vector2(119.897, 144.594)
+rotation = -0.296271
+color = Color(0.709804, 0.439216, 1, 0.494118)
+antialiased = true
+polygon = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+metadata/_edit_group_ = true
+
+[node name="Fill" type="Polygon2D" parent="ColorRect/Out8"]
+color = Color(0.247059, 0.133333, 0.513726, 1)
+polygon = PackedVector2Array(-48, -48, 48, -48, 48, 48, -48, 48)
+
+[node name="Out9" type="Polygon2D" parent="ColorRect"]
+position = Vector2(303.897, -55.4064)
+rotation = -0.607514
+scale = Vector2(1.58554, 1.58554)
+color = Color(0.709804, 0.439216, 1, 0.494118)
+antialiased = true
+polygon = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+metadata/_edit_group_ = true
+
+[node name="Fill" type="Polygon2D" parent="ColorRect/Out9"]
+color = Color(0.247059, 0.133333, 0.513726, 1)
+polygon = PackedVector2Array(-48, -48, 48, -48, 48, 48, -48, 48)
+
+[node name="Out10" type="Polygon2D" parent="ColorRect"]
+position = Vector2(511.897, 80.5936)
+rotation = 0.361233
+scale = Vector2(0.536975, 0.536975)
+color = Color(0.709804, 0.439216, 1, 0.494118)
+antialiased = true
+polygon = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+metadata/_edit_group_ = true
+
+[node name="Fill" type="Polygon2D" parent="ColorRect/Out10"]
+color = Color(0.247059, 0.133333, 0.513726, 1)
+polygon = PackedVector2Array(-48, -48, 48, -48, 48, 48, -48, 48)
+
+[node name="Out11" type="Polygon2D" parent="ColorRect"]
+position = Vector2(672, 256)
+rotation = 0.636708
+color = Color(0.709804, 0.439216, 1, 0.494118)
+antialiased = true
+polygon = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+metadata/_edit_group_ = true
+
+[node name="Fill" type="Polygon2D" parent="ColorRect/Out11"]
+color = Color(0.247059, 0.133333, 0.513726, 1)
+polygon = PackedVector2Array(-48, -48, 48, -48, 48, 48, -48, 48)
+
+[node name="Out12" type="Polygon2D" parent="ColorRect"]
+position = Vector2(1095.9, -255.407)
+rotation = 0.325465
+scale = Vector2(1.58554, 1.58554)
+color = Color(0.709804, 0.439216, 1, 0.494118)
+antialiased = true
+polygon = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+metadata/_edit_group_ = true
+
+[node name="Fill" type="Polygon2D" parent="ColorRect/Out12"]
+color = Color(0.247059, 0.133333, 0.513726, 1)
+polygon = PackedVector2Array(-48, -48, 48, -48, 48, 48, -48, 48)
+
+[node name="Out13" type="Polygon2D" parent="ColorRect"]
+position = Vector2(968, 232)
+rotation = 1.29421
+scale = Vector2(0.536975, 0.536975)
+color = Color(0.709804, 0.439216, 1, 0.494118)
+antialiased = true
+polygon = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+metadata/_edit_group_ = true
+
+[node name="Fill" type="Polygon2D" parent="ColorRect/Out13"]
+color = Color(0.247059, 0.133333, 0.513726, 1)
+polygon = PackedVector2Array(-48, -48, 48, -48, 48, 48, -48, 48)
+
+[node name="Out14" type="Polygon2D" parent="ColorRect"]
+position = Vector2(831.897, 32.5935)
+rotation = 0.175326
+scale = Vector2(1.29434, 1.29434)
+color = Color(0.709804, 0.439216, 1, 0.494118)
+antialiased = true
+polygon = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+metadata/_edit_group_ = true
+
+[node name="Fill" type="Polygon2D" parent="ColorRect/Out14"]
+color = Color(0.247059, 0.133333, 0.513726, 1)
+polygon = PackedVector2Array(-48, -48, 48, -48, 48, 48, -48, 48)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -191.0
+offset_top = 152.0
+offset_right = 191.0
+offset_bottom = 333.0
+grow_horizontal = 2
+text = "Roll!"
+label_settings = SubResource("LabelSettings_hlu3v")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.543
+anchor_right = 0.5
+anchor_bottom = 0.543
+offset_left = -112.0
+offset_top = -15.864
+offset_right = 112.0
+offset_bottom = 48.136
+theme = ExtResource("3_r0qv2")
+text = "Generate Loot"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

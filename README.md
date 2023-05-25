@@ -11,3 +11,4 @@ For now, the list goes like this:
 - Day 4: More Shaders! [\[Folder\]](https://github.com/Rikaisan/Godot-prototypes/tree/main/vfx-and-shaders) [\[Preview\]](https://twitter.com/i/status/1660474979534753799)
 - Day 5: Loot pickup system [\[Folder\]](https://github.com/Rikaisan/Godot-prototypes/tree/main/loot-pickup) [\[Preview\]](https://twitter.com/i/status/1660850737478344707)
 - Day 6: Top-down cursor/crosshair system [\[Folder\]](https://github.com/Rikaisan/Godot-prototypes/tree/main/topdown-cursor) [\[Preview\]](https://twitter.com/i/status/1661164207620988930)
+- Day 7: JSON & Loot Tables [\[Folder\]](https://github.com/Rikaisan/Godot-prototypes/tree/main/json-parsing) [\[Preview\]](https://twitter.com/i/status/1661530996217462784)

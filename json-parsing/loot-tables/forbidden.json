@@ -1,0 +1,13 @@
+{
+  "name": "Forbidden Fruit",
+  "items": [
+    {
+      "value": "Enchanted Apple",
+      "weight": 1
+    },
+    {
+      "value": "Enchanted Peach",
+      "weight": 1
+    }
+  ]
+}

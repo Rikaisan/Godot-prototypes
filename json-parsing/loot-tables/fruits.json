@@ -1,0 +1,35 @@
+{
+  "name": "fruits",
+  "depends":  ["forbidden.json"],
+  "items": [
+    {
+      "type": "item",
+      "value": "Cherry",
+      "weight": 100
+    }, {
+      "type": "item",
+      "value": "Apple",
+      "weight": 20
+    }, {
+      "type": "item",
+      "value": "Peach",
+      "weight": 2
+    }, {
+      "type": "item",
+      "value": "Pear",
+      "weight": 20
+    }, {
+      "type": "item",
+      "value": "Banana",
+      "weight": 20
+    }, {
+      "type": "item",
+      "value": "Mango",
+      "weight": 0
+    }, {
+      "type": "table",
+      "value": "Forbidden Fruit",
+      "weight": 50
+    }
+  ]
+}
